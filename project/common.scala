@@ -71,14 +71,11 @@ object Common {
         </developer>
       </developers>),
     publishArtifact in Test := false,
-    resolvers ++= Seq(
-      "sonatype-public" at "https://oss.sonatype.org/content/repositories/public"),
-    publishTo <<= version { (v: String) =>
-      val nexus = "https://oss.sonatype.org/"
-      if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots") 
-      else Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-    },
-    credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+    //local
+//    publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath+"/.m2/repository/"))),
+    // publish to local nexus with credentials
+    publishTo := Some("Sonatype Nexus Repository Manager" at "http://IPNEXUS:8081/nexus/content/repositories/thirdparty"),
+    credentials += Credentials(Path.userHome / ".m2" / ".credentials"),
     publishMavenStyle := true,
     pomIncludeRepository := { x => false }
   )

@@ -272,4 +272,16 @@
     </profile>
   </profiles>
 
+  <distributionManagement>
+	<repository>
+            <id>thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://IPNEXUS:8081/nexus/content/repositories/thirdparty/</url>
+        </repository>
+        <snapshotRepository>
+            <id>thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://IPNEXUS:8081/nexus/content/repositories/thirdparty/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
