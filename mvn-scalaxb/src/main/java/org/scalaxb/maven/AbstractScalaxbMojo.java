@@ -274,6 +274,12 @@ public abstract class AbstractScalaxbMojo extends AbstractMojo {
     public File getOutputDirectory() {
         return outputDirectory;
     }
+    /**
+     * When this option is activated, lenses are generated for each case class allowing the user to modify easily
+     * an XML file.
+     */
+    @Parameter
+    private boolean generateLens;
 
     /**
      * Generate case class repeated parameters as varargs if true or Seq if false
@@ -314,6 +320,7 @@ public abstract class AbstractScalaxbMojo extends AbstractMojo {
             .flag("--blocking", !async)
             .flag("--lax-any", laxAny)
 	        .flag("--no-varargs", !varArgs)
+	        .flag("--generate-lens", generateLens)
             .flag("--ignore-unknown", ignoreUnknown)
             .getArguments();
         return unmodifiableList(args);

@@ -67,6 +67,7 @@ case class Config(items: Map[String, ConfigEntry]) {
     (get[DispatchVersion] getOrElse defaultDispatchVersion).value
   def varArg: Boolean = values contains VarArg
   def ignoreUnknown: Boolean = values contains IgnoreUnknown
+  def generateLens: Boolean = values contains GenerateLens
 
   private def get[A <: ConfigEntry: Manifest]: Option[A] =
     items.get(implicitly[Manifest[A]].runtimeClass.getName).asInstanceOf[Option[A]]
@@ -128,4 +129,5 @@ object ConfigEntry {
   case class DispatchVersion(value: String) extends ConfigEntry
   case object VarArg extends ConfigEntry
   case object IgnoreUnknown extends ConfigEntry
+  case object GenerateLens extends ConfigEntry
 }
